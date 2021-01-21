@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type = "text/css" href="./style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+<title>Weather Forecast</title>
+<style type = "text/css" rel = "stylesheet">
+  *{
+    margin: 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+}
+.my-auto{
+   display: block;
+   margin-top: auto !important;
+}
+</style>
+</head>
+<body class = "d-flex justify-content-center align-items-center ">
+    <div class="card " style="width: 18rem;">
+        <div style = "height: 150px;" class = " d-flex justify-content-center align-items-center flex-column bg-success">
+            <div id="logo">
+            <i class="fas fa-sun text-warning" style = "font-size: 50px"></i><br>
+            </div>
+            <p id = "status" class = "text-dark"></p>
+        </div>
+        <div class="card-body" style = "background-color: rgb(223, 127, 18)">
+            <div class = "d-flex justify-content-center">
+            <i class="fas fa-male" style = "position: relative; top : 5px"></i>
+          <h5 class="card-title ml-2">{%city%}, {%country%}</h5>
+          </div>
+          <p class="card-text text-center">Date</p>
+          <p class = "temp text-center">{%temp%}&degC</p>
+          <p class = "minmax text-center">MIN {%mintemp%} &degC | MAX {%maxtemp%}&degC</p>
+        </div>
+      </div>
+<script>
+  var obj = document.getElementsByClassName("card-text")[0];
+  var tempStatus = "{%tempstatus%}";
+  var logo = document.getElementById("logo");
+  if(tempStatus == "Smoke")
+  {
+     logo.innerHTML = '<i class="fas fa-cloud text-dark" style = "font-size: 50px; color: grey;"></i>';
+     document.getElementsByTagName("p")[0].innerHTML = "Smoke";
+  }
+  else{
+    logo.innerHTML = '<i class="fas fa-sun text-warning" style = "font-size: 50px; color: grey;"></i>';
+    document.getElementsByTagName("p")[0].innerHTML = "Sunny";
+  }
+  var time = new Date();
+  var days = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thirs",
+    "Fri",
+    "Sat"
+  ];
+  var months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "April",
+    "May",
+    "Jun",
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ]
+  var hours = time.getHours();
+  var par = "AM";
+  if(hours > 12){
+    hours -= 12;
+    par = "PM";
+  }
+  obj.innerHTML = `${days[time.getDay()]} | ${months[time.getMonth()]} ${time.getDate()} | ${hours}:${time.getMinutes()}${par}`;
+</script>
+<script src =  "prac.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
